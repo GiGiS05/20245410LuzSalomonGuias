@@ -1,0 +1,28 @@
+body {
+    background-color: lightblue;
+}
+
+div {
+    font-size: 20px;
+}
+h2 {
+    text-decoration: underline;
+    color: white; /*12*/
+}
+p#parrafo1 {
+    color: navy;
+    font-weight: bold; /*13*/
+}
+
+p#parrafo2 {
+    text-transform: uppercase;
+    text-align: justify; /*14*/
+}
+
+p#parrafo3{
+    font-size: 12px;
+}
+
+span {
+    font-style: italic;
+}
