@@ -43,9 +43,7 @@ h2{
 section{
     margin: 0 auto;
     width: 90%;
-    /*18*/
-    display: flex;
-    flex-wrap: wrap;
+    
     /*19*/
     overflow: hidden;
     /*34*/
@@ -54,6 +52,8 @@ section{
 }
 
 section article{
+    /*18*/
+    float: left;
     font-size: 0.9rem;
     height: 340px;
     /*21*/
