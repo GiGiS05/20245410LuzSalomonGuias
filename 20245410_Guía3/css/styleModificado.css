@@ -1,0 +1,116 @@
+@import url(https://fonts.googleapis.com/css?family=Muli);
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Muli', sans-serif;
+    text-align: justify;
+}
+
+header{
+    background: #16A085;
+    height: 130px;
+    /*24*/
+    overflow: hidden;
+    /*Ejercicio complementario 2*/
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+footer{
+    margin-top: 20px;
+    background: #16A085;
+    height: 50px;
+}
+
+header div, footer div{
+    width: 80%;
+    margin: 0 auto;
+    color: white;
+    
+}
+
+h1{
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+}
+
+h2{
+    font-size: 2rem;
+}
+
+section{
+    width: 90%;
+    /*19*/
+    overflow: hidden;
+    /*34*/
+    position: relative;
+    /*Ejercicio complementario 2*/
+    /*margin: 0 auto;*/
+    margin: 130px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+section article{
+    /*18*/
+    /*Ejercicio complementario 2
+    float: left;*/
+    font-size: 0.9rem;
+    height: 340px;
+    /*21*/
+    width:/*33.33%*/32.33%;
+    /*20*/
+    margin: 0.5%;
+    /*22*/
+    border: 2px dashed #16A085;
+    padding: 1%;
+    /*23*/
+    box-sizing: border-box;
+    /*24*/
+    overflow: hidden;
+}
+
+/*27*/
+section article h3{
+    text-align: center;
+}
+
+section article img{
+    max-width: 80%;
+    height: 180px;
+    /*25*/
+    margin: 5px auto;
+    /*26*/
+    display: block;
+
+}
+
+/*28*/
+footer div{
+    padding-top: 1rem;
+}
+
+/*29*/
+section article:nth-child(2){
+    background-color: rgba(70,130,180,0.9);
+    /*29 
+    position: relative;*/
+    /* 34 
+    position: absolute; */
+    left: 100px;
+    top: 50px;
+    /*37*/
+    position: estatic;
+    /*38
+    visibility: hidden;*/
+    /*39*/
+    display: none;
+}
