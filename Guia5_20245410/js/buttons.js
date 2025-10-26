@@ -1,0 +1,22 @@
+function aviso(){
+    alert("Bienvenido al mundo JavaScript");
+}
+
+function confirmacion(){
+    //Los valores que puede almacenar la variable de
+    //confirmación son true o false
+    let confirmacion = confirm("¿Desea salir de la sesión?");
+    /*Para imprimir una variable en una cadena podemos
+    utilizar las comillas simples inversas `` y luego 
+    hacemos el llamado de la variable con ${nombre-de-variable}*/
+    alert(`Valor seleccionado ${confirmacion}`);
+}
+
+function capturarDatos(){
+    let nombre = prompt("¿Cuál es su nombre?");
+    // Notese que en campo del prompt se mostrara 0 por
+    //defecto
+    let edad = prompt("¿Cuál es su edad?",0);
+    
+    alert(`Su nombre es ${nombre} y su edad es ${edad}`);
+}
