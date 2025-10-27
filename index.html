@@ -5,56 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio: Luz Salomón </title>
     <link rel="stylesheet" href="index_style.css">
-    <!--RECURSOS PARA ICONOS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <header>
-    <h4><i class="fa-regular fa-address-book"></i>Portafolio</h4>
+    <h4><img src="img/address-book.svg" class="logo">
+        Portafolio</h4>
     <menu>
         <ul>
-            <li><a href="#sobre-mi"><i class="fa-regular fa-address-card"></i>Sobre mi</a></li>
-            <li><a href="#sobre-materia"><i class="fa-solid fa-book"></i>Sobre la materia</a></li>
-            <li><a href="#guias"><i class="fa-solid fa-bookmark"></i>Guías de ejercicio</a>
-                <ul>
-                    <li><a href="#guia1"> Guía 1</a></li>
+            <li><a href="#sobre-mi" id="menu-sobre-mi">Sobre mi</a></li>
+            <li><a href="#sobre-materia" id="menu-sobre-materia">Sobre la materia</a></li>
+            <li>
+                <input type="checkbox" id="menu-guias" class="toggle-menu">
+                <label for="menu-guias" id="menu-guias">Guías de ejercicio</label>
+                <ul class="sub-menu">
+                    <li><a href="#guia1">Guía 1</a></li>
                     <li><a href="#guia2">Guía 2</a></li>
                     <li><a href="#guia3">Guía 3</a></li>
                     <li><a href="#guia4">Guía 4</a></li>
                 </ul>
             </li>
-            <li><a href="#FODA"><i class="fa-solid fa-table-cells-large"></i>FODA</a></li>
+            <li><a href="#FODA" id="menu-FODA">
+                FODA</a></li>
         </ul>
     </menu>
 </header>
-<section id="sobre-mi" class="big-card">
-    <h2>Luz Giselle Salomón Sandoval - 20245410</h2>
+<section id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <article class="big-card">
+        <h3>Luz Giselle Salomón Sandoval - 20245410</h3>
     <img src="20245410_Guia2/img/FotoGiselle.jpeg" class="id-foto">
     <p>
-       Hola, soy Giselle Salomón, tengo 20 años y soy 
-       una estudiante de 2do año de Ingeniería de Software y 
-       Negocios Digitales en la ESEN. 
-
-       Desde antes de graduarme bachillerato, mi vida ha sido 
-       dirigida por la ciencia, la tecnología y la enseñanza. 
-       Esto me llevó a múltiples experiencias gratificantes como 
+       Tengo 20 años y estoy en 2do de Ingeniería de Software y 
+       Negocios Digitales en la ESEN.</p>
+       <br>
+       <p>
+       Mi vida ha sido 
+       dirigida por la ciencia y la enseñanza. Gracias a esto pude
        representar al país en olimpiadas internacionales de química 
-       e informática, así como ayudar a mis compañeros como tutora de 
-       matemáticas (universitaria) y química (colegios), y como ayudante de cátedra en Taller de 
-       Emprendimiento (universitaria). 
-
-       Actualmente poseo el rol de Líder de marketing en EduTECH ESEN, 
+       e informática. También ayudé a mis <i>underclassmates</i> como tutora de 
+       matemáticas y química, y como ayudante de Taller de 
+       Emprendimiento.</p> 
+       <br>
+       <p>Actualmente poseo el rol de Líder de marketing en EduTECH ESEN, 
        una asociación estudiantil que busca reducir la brecha en el 
        analfabetismo tecnológico en El Salvador a través de la educación en 
-       jóvenes.
+       jóvenes.</p>
+       <br>
 
-       En mi tiempo libre disfruto leer novelas fantásticas y de terror, 
-       escritura creativa y hacer crochet. 
-    </p>
+       <p>En mi tiempo libre disfruto leer novelas fantásticas y de terror, 
+       escritura creativa y hacer crochet.</p>
+    </article>
 </section>
 
 <section id="sobre-materia">
-<h2>Materia: Desarrollo Web</h2>
+<h2>Sobre la materia: Desarrollo Web</h2>
+<article class="img-line">
+<img src="img/html5-logo.png">
+<img src="img/css3-logo.png">
+<img src="img/js-logo.png">
+</article>
+
     <p>
         Esta materia me ha brindado una base sólida en el desarrollo web, 
         permitiéndome comprender y aplicar conceptos fundamentales como HTML, CSS y JavaScript. 
@@ -72,6 +82,12 @@
     <h1>Guías</h1>
     <article id="guia1" class="guia">
         <h2> Guía 1</h2>
+        <p>
+            En esta guía se introduce html y css básicos, 
+            incluyendo etiquetas, atributos, estilos embebidos,
+            selectores, colores y unidades de medida.
+        </p>
+
         <h3>Procedimiento</h3>
         <ul>
             <li><a href="20245410_Guia1/estilos_embebidos.html" 
@@ -94,6 +110,12 @@
     </article>
     <article id="guia2" class="guia">
         <h2>Guía 2</h2>
+        <p>
+            En esta guía se profundiza en CSS, 
+            incluyendo el modelo de caja, 
+            posicionamiento, display, 
+            pseudo-clases y pseudo-elementos.</p>
+
         <h3>Procedimiento</h3>
         <ul>
             <li><a href="20245410_Guia2/pelicula.html" target="_blank">
@@ -110,6 +132,12 @@
 
     <article class="guia" id="guia3">
         <h2>Guía 3</h2>
+        <p>
+            En esta guía se exploran layouts avanzados con 
+            Flexbox incluyendo alineación, 
+            distribución de espacio. Además, se exploran
+            los diseños flexibles y estáticos de una página.
+        </p>
         <h3>Procedimiento</h3>
         <ul>
             <li><a href="20245410_Guia3/oscares.html" target="_blank">Ejemplo 1: Óscares</a></li>
@@ -131,6 +159,11 @@
     </article>
     <article class="guia" id="guia4">
         <h2>Guía 4</h2>
+        <p>
+            En esta guía se introduce el diseño responsivo 
+            mediante media queries para adaptar el contenido 
+            a diferentes dispositivos y tamaños de pantalla.
+        </p>
         <h3>Procedimiento</h3>
         <ul>
             <li><a href="20245410_Guia4/mediaqueries.html" target="_blank"> Ejemplo 1: Mediaqueries</a></li>
@@ -151,6 +184,7 @@
             <li>Galerías</li>
             <li>Flexbox</li>
             <li>Menús</li>
+            <li>Diseño flexible</li>
         </ul>
     </article>
     <article class="foda-card">
@@ -185,7 +219,9 @@
 
 <section class="codigo-honor">
     <h2>Código de honor</h2>
-    <p>
+
+    <article class="big-card">
+        <p>
         “Por mi honor y ante mis compañeros, me 
         comprometo a que esta actividad académica 
         refleje mi verdadero nivel de conocimientos, 
@@ -194,6 +230,8 @@
         plagiar)”.</p>
     <h3>Firma:</h3>
     <p>Luz Giselle Salomón Sandoval</p>
+    </article>
+    
 </section>
 
 
@@ -201,7 +239,6 @@
     <h3>See ya next time~ ヽ(✿ﾟ▽ﾟ)ノ</h3>
     <p>Derechos reservados 2025</p>
     <a href="https://github.com/GiGiS05/20245410LuzSalomonGuias">
-        <i class="fa-brands fa-github"></i>
         Repositorio GitHub</a>
 </footer>
 </body>
