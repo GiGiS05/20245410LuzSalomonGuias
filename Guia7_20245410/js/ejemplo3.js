@@ -96,3 +96,4 @@ const startDOM = () => {
     buttonAumentar.addEventListener("click", aumentarLetra, false);
     buttonDisminuir.addEventListener("click", disminuirLetra, false);
 };
+document.addEventListener("DOMContentLoaded", startDOM);
