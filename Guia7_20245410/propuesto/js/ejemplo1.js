@@ -49,6 +49,7 @@ const newSelect = function(){
         addOption.value = i;
         addOption.innerHTML = `Opcion ${i}`;
         addElemento.appendChild(addOption);
+    }
 
         //creando label par el nuevo control
         let labelElemento = document.createElement("label");
@@ -81,7 +82,6 @@ const newSelect = function(){
             newForm.removeChild(btnSubmit);
             newForm.appendChild(btnSubmit);
         }
-    }
 }
 // 1.c
 const newColor = function(){
@@ -224,6 +224,23 @@ const newInput = function(newElemento){
         }
 }
 
+//validar formulario
+
+const validarCampos = function(elemento){
+    if (elemento.type == "radio" || elemento.type == "checkbox"){
+        if (elemento.checked){
+            return 0;
+        }else{
+            return 1;
+        }
+    }else{
+        if (elemento.value != ""){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+}
 
 
 
@@ -261,6 +278,25 @@ buttonAddElemento.onclick = ()=>{
         
     }
 }
+
+btnSubmit.addEventListener("click", function(event){
+    let errores = 0;
+    let elementos = newForm.elements;
+    let totalElementos = elementos.length;
+    for (let index = 0; index < totalElementos-1; index++) {
+        let elemento = elementos[index];
+        errores += validarCampos(elemento);
+    }
+    if (errores > 0){
+        alert("Uno o más campos vacios");
+        event.preventDefault();
+    }else{
+        alert("Formulario enviado")
+    }
+});
+
+
+
 
 //Agregando evento para el modal de bootstrap
 document.getElementById("idModal").addEventListener("shown.bs.modal", () =>{
