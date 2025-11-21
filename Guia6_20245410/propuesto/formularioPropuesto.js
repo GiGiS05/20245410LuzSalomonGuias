@@ -93,8 +93,8 @@ function imprimirFilas() {
     arrayPaciente.forEach((element) => {
         $fila += `<tr>
             <td scope="row" class="text-center fw-bold">${contador}</td>
-            <td id="idNombre${contador}" class="text-center">${element[0]}</td>
-            <td id="idApellido${contador}" class="text-center">${element[1]}</td>
+            <td class="text-center">${element[0]}</td>
+            <td class="text-center">${element[1]}</td>
             <td>${element[2]}</td>
             <td>${element[3]}</td>
             <td>${element[4]}</td>
@@ -131,6 +131,7 @@ const imprimirPacientes = () => {
     </div>`;
 
     document.getElementById("idTablaPacientes").innerHTML = $table;
+    agregarEliminar();
 };
 
 // Contador global de los option correspondiente
@@ -158,6 +159,44 @@ const addPais = () => {
         //llamando al componente de Bootstrap
         toast.show();
     }
+};
+
+//Eliminar paciente
+const eliminarPaciente = (index) => {
+    console.log(index+"juuju");
+    arrayPaciente.splice(index, 1);
+    mensaje.innerHTML = "Paciente eliminado correctamente";
+    toast.show();
+
+    // Volver a cargar la tabla
+    if (arrayPaciente.length > 0) {
+        imprimirPacientes();
+    } else {
+        document.getElementById("idTablaPacientes").innerHTML = "Ninguno";
+    }
+    console.log(arrayPaciente);
+};
+
+// Funcion para agregar eventos a los botones de eliminar
+const agregarEliminar = () => {
+    // Seleccionar todos los botones con la clase btn-eliminar
+    const botonesEliminar = document.querySelectorAll('[id^="idBtnEliminar"]');
+
+    // Agregar evento onclick a cada boton
+    botonesEliminar.forEach((boton) => {
+        boton.onclick = function() {
+            // Obtener el indice del paciente desde el atributo data-index
+            const id = this.getAttribute("id");
+            const index = parseInt(id.replace("idBtnEliminar", ""));
+            console.log(index);
+
+
+            // Confirmar antes de eliminar
+            if (confirm("¿Está seguro de eliminar este paciente?")) {
+                eliminarPaciente(index-1);
+            }
+        };
+    });
 };
 
 //Agregando eventos a los botones y utilizando funciones tipo flecha
