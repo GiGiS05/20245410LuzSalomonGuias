@@ -21,6 +21,11 @@ const mensaje = document.getElementById("idMensaje");
 //Componente modal
 const idModal = document.getElementById("idModal");
 
+const editarPacienteModalElement = document.getElementById("idModalEditar");
+const editarPacienteModal = new bootstrap.Modal(editarPacienteModalElement);
+const bodyModalEditar = document.getElementById("idBodyModal");
+
+
 //Arreglo global de pacientes
 let arrayPaciente = [];
 
@@ -131,7 +136,10 @@ const imprimirPacientes = () => {
     </div>`;
 
     document.getElementById("idTablaPacientes").innerHTML = $table;
+    
+    //Agregar eventos a los botones eliminar y editar
     agregarEliminar();
+    agregarEditar();
 };
 
 // Contador global de los option correspondiente
@@ -163,7 +171,6 @@ const addPais = () => {
 
 //Eliminar paciente
 const eliminarPaciente = (index) => {
-    console.log(index+"juuju");
     arrayPaciente.splice(index, 1);
     mensaje.innerHTML = "Paciente eliminado correctamente";
     toast.show();
@@ -174,30 +181,120 @@ const eliminarPaciente = (index) => {
     } else {
         document.getElementById("idTablaPacientes").innerHTML = "Ninguno";
     }
-    console.log(arrayPaciente);
 };
 
-// Funcion para agregar eventos a los botones de eliminar
+// Agregar eventos a los botones de eliminar dinamicamente
 const agregarEliminar = () => {
-    // Seleccionar todos los botones con la clase btn-eliminar
     const botonesEliminar = document.querySelectorAll('[id^="idBtnEliminar"]');
 
-    // Agregar evento onclick a cada boton
     botonesEliminar.forEach((boton) => {
         boton.onclick = function() {
-            // Obtener el indice del paciente desde el atributo data-index
+            // Obtener el contador de la tabla
             const id = this.getAttribute("id");
-            const index = parseInt(id.replace("idBtnEliminar", ""));
-            console.log(index);
+            const index = parseInt(id.replace("idBtnEliminar", ""))-1;
 
-
-            // Confirmar antes de eliminar
             if (confirm("¿Está seguro de eliminar este paciente?")) {
-                eliminarPaciente(index-1);
+                eliminarPaciente(index);
             }
         };
     });
 };
+
+//Formulario de edición en modal
+const generarFormularioEdicion = (index) => {
+    const paciente = arrayPaciente[index];
+    
+    // Generar opciones del select de país
+    let opcionesPais = `<option value="0">Seleccione un Pais</option>`;
+    for (let i = 1; i < cmbPais.options.length; i++) {
+        const selected = cmbPais.options[i].text === paciente[4] ? "selected" : "";
+        opcionesPais += `<option value="${cmbPais.options[i].value}" ${selected}>${cmbPais.options[i].text}</option>`;
+    }
+
+    const formulario = `
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="idEditNombre" value="${paciente[0]}">
+            <label for="idEditNombre"><i class="bi bi-person-circle"></i> Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="idEditApellido" value="${paciente[1]}">
+            <label for="idEditApellido"><i class="bi bi-person-circle"></i> Apellido</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="idEditFecha" value="${paciente[2]}">
+            <label for="idEditFecha"><i class="bi bi-calendar-date"></i> Fecha nacimiento</label>
+        </div>
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="rdSexoEdit" id="idEditMasculino" ${paciente[3] === "Hombre" ? "checked" : ""}>
+                <label class="form-check-label" for="idEditMasculino">Hombre</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="rdSexoEdit" id="idEditFemenino" ${paciente[3] === "Mujer" ? "checked" : ""}>
+                <label class="form-check-label" for="idEditFemenino">Mujer</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" id="idEditPais">
+                ${opcionesPais}
+            </select>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="idEditDireccion" rows="3">${paciente[5]}</textarea>
+            <label for="idEditDireccion"><i class="bi bi-geo"></i> Dirección</label>
+        </div>
+        <button type="button" class="btn btn-success" id="idBtnGuardarEdicion">
+            <i class="bi bi-check-circle"></i> Guardar cambios
+        </button>
+    `;
+    
+    return formulario;
+};
+
+// Funcion para guardar los cambios de edición
+const guardarEdicion = () => {
+    const nombre = document.getElementById("idEditNombre").value;
+    const apellido = document.getElementById("idEditApellido").value;
+    const fecha = document.getElementById("idEditFecha").value;
+    const sexo = document.getElementById("idEditMasculino").checked ? "Hombre" 
+               : document.getElementById("idEditFemenino").checked ? "Mujer" : "";
+    const paisSelect = document.getElementById("idEditPais");
+    const pais = paisSelect.options[paisSelect.selectedIndex].text;
+    const direccion = document.getElementById("idEditDireccion").value;
+
+    if (nombre && apellido && fecha && sexo && paisSelect.value != 0 && direccion) {
+        arrayPaciente[indicePacienteEditando] = [nombre, apellido, fecha, sexo, pais, direccion];
+        
+        mensaje.innerHTML = "Paciente actualizado correctamente";
+        toast.show();
+        
+        editarPacienteModal.hide();
+        imprimirPacientes();
+    } else {
+        mensaje.innerHTML = "Faltan campos por completar";
+        toast.show();
+    }
+};
+
+// Funcion para agregar eventos a los botones de editar dinamicamente
+const agregarEditar = () => {
+    const botonesEditar = document.querySelectorAll('[id^="idBtnEditar"]');
+
+    botonesEditar.forEach((boton) => {
+        boton.onclick = function() {
+            const id = this.getAttribute("id");
+            const index = parseInt(id.replace("idBtnEditar", "")) - 1;
+            
+            indicePacienteEditando = index;
+            bodyModalEditar.innerHTML = generarFormularioEdicion(index);
+            editarPacienteModal.show();
+            
+            // Agregar evento al botón guardar después de crear el formulario
+            document.getElementById("idBtnGuardarEdicion").onclick = guardarEdicion;
+        };
+    });
+};
+
 
 //Agregando eventos a los botones y utilizando funciones tipo flecha
 buttonLimpiarPaciente.onclick = () => {
@@ -221,6 +318,8 @@ idModal.addEventListener("shown.bs.modal", () => {
     inputNombrePais.value = "";
     inputNombrePais.focus();
 });
+
+
 
 //Ejecutar funcion al momento de cargar la pagina HTML
 limpiarForm();
