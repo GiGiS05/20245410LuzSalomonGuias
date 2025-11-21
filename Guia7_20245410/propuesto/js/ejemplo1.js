@@ -16,6 +16,12 @@ const nombreElemento = document.getElementById("idNombreElemento");
 //Creando modal con bootstrap
 const modal = new bootstrap.Modal(document.getElementById("idModal"),{});
 
+//Crear boton submit 1.b
+const btnSubmit = document.createElement("button");
+btnSubmit.setAttribute("id", "idValidarFormularios");
+btnSubmit.setAttribute("class", "btn btn-primary");
+btnSubmit.innerHTML = "Validar Formulario"
+
 //Agregando funciones
 const verificarTipoElemento = function(){
     let elemento = cmbElemento.value;
@@ -27,6 +33,8 @@ const verificarTipoElemento = function(){
         alert("Debe seleccionar el elemento que se creará");
     }
 }
+
+
 
 const newSelect = function(){
     //creando elementos
@@ -66,7 +74,55 @@ const newSelect = function(){
         newForm.appendChild(labelId);
         //Creando el DIV que sera hijo del nuevo formulario
         newForm.appendChild(divElemento);
+        //Creando el boton submit que sera hijo del nuevo formulario si no existe
+        if (!document.getElementById("idValidarFormularios")){
+            newForm.appendChild(btnSubmit);
+        }else{
+            newForm.removeChild(btnSubmit);
+            newForm.appendChild(btnSubmit);
+        }
     }
+}
+// 1.c
+const newColor = function(){
+    //creando elemento color
+    let addElemento = document.createElement("input");
+    //creando atributos para el nuevo elemento
+    addElemento.setAttribute("id", `id${nombreElemento.value}`);
+    addElemento.setAttribute("type", "color");
+    addElemento.setAttribute("class", "form-control form-control-color");
+
+    //creando label para el nuevo control
+    let labelElemento = document.createElement("label");
+    labelElemento.setAttribute("class", "form-control-label");
+    //creando el texto para el label
+    labelElemento.textContent = tituloElemento.value;
+
+    //creando label del id
+    let labelId = document.createElement("span");
+    labelId.textContent = `ID de control: ${nombreElemento.value}`;
+
+    //creando plantilla de bootstrap para visualizar el nuevo elemento
+    let divElemento = document.createElement("div");
+    //agregando atributos
+    divElemento.setAttribute("class", "form-floating mb-3");
+
+    //Creando el input que sera hijo del div
+    divElemento.appendChild(addElemento);
+    //creando el label que sera hijo del div
+    divElemento.appendChild(labelElemento);
+
+    //Creando el SPAN que sera hijo del nuevo formulario
+    newForm.appendChild(labelId);
+    //Creando el div que sera hijo del nuevo formulario
+    newForm.appendChild(divElemento);
+    //Creando el boton submit que sera hijo del nuevo formulario si no existe
+        if (!document.getElementById("idValidarFormularios")){
+            newForm.appendChild(btnSubmit);
+        }else{
+            newForm.removeChild(btnSubmit);
+            newForm.appendChild(btnSubmit);
+        }
 }
 
 const newRadioCheckbox = function(newElemento){
@@ -103,10 +159,17 @@ const newRadioCheckbox = function(newElemento){
     
     //Creando el div que sera hijo del nuevo formulario
     newForm.appendChild(divElemento);
+    //Creando el boton submit que sera hijo del nuevo formulario si no existe
+        if (!document.getElementById("idValidarFormularios")){
+            newForm.appendChild(btnSubmit);
+        }else{
+            newForm.removeChild(btnSubmit);
+            newForm.appendChild(btnSubmit);
+        }
 }
 
 const newInput = function(newElemento){
-    //Creando elementos de tipo = text, number, date y password
+    //Creando elementos de tipo = text, number, date, password y email (1.c).
     let addElemento = 
     newElemento == "textarea" 
     ? document.createElement("textarea") 
@@ -152,9 +215,19 @@ const newInput = function(newElemento){
 
     //creando el div que sera hijo del nuevo formulario
     newForm.appendChild(divElemento);
+    //Creando el boton submit que sera hijo del nuevo formulario si no existe
+        if (!document.getElementById("idValidarFormularios")){
+            newForm.appendChild(btnSubmit);
+        }else{
+            newForm.removeChild(btnSubmit);
+            newForm.appendChild(btnSubmit);
+        }
 }
 
- 
+
+
+
+
 
 //Agregando evento clic a los botones
 buttonCrear.onclick = ()=>{
@@ -162,18 +235,30 @@ buttonCrear.onclick = ()=>{
 }
 
 buttonAddElemento.onclick = ()=>{
-    if (nombreElemento.value !="" && tituloElemento.value !=""){
+    
+    //Ejercicio propuesto 1.a validar id unico
+    let id = `id${nombreElemento.value}`;
+    const validarId = document.getElementById(id) ?  true : false;
+
+    if (nombreElemento.value !="" && tituloElemento.value !="" && !validarId){
         let elemento = cmbElemento.value;
 
         if (elemento == "select"){
             newSelect();
         }else if (elemento == "radio" || elemento == "checkbox"){
             newRadioCheckbox(elemento);
+        }else if (elemento == "color"){
+            newColor();
         }else {
             newInput(elemento);
         }
     }else{
-        alert("Faltan campos por completar");
+        if (validarId){
+            alert("Nombre de elemento duplicado o en uso por el creador de formulario. Use un nombre distinto")
+        } else {
+            alert("Faltan campos por completar");
+        }
+        
     }
 }
 
