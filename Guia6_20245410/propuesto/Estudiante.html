@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"><!--Para el formato de la fecha-->
+    <link href="Estudiante.css" rel="stylesheet" />
+    <link rel="icon" href="../bootstrap/icons/person-circle.svg" sizes="32x32" type="image/svg" />
+    <title>Formulario Estudiantes</title>
+</head>
+<body>
+    <div>
+        <h1>Formulario de Estudiantes</h1>
+        <form class="" id="idFormulario">
+            <div class="input-group mb-3">
+                
+                <span class="input-group-text" id="idCarnetSpan"> 
+                    <img src="../bootstrap/icons/person-badge-fill.svg">
+                    Carnet</span>
+                <input type="text" id="idCarnetTxt" class="form-control" placeholder="XX###" aria-label="carnet" aria-describedby="idCarnetSpan">
+                <p class="invalid-feedback"   id=" c-1">formato: XX###,solo se admiten mayusculas y numeros</p>
+            </div>
+            
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="idNombreSpan">
+                    <img src="../bootstrap/icons/person-circle.svg">
+                    Nombre completo</span>
+                <input type="text" id= "idNombreTxt" 
+                class="form-control" 
+                placeholder="Nombre y Apellido" aria-label="nombre" aria-describedby="idNombreSpan">
+                <p class="invalid-feedback"   id="na-1">formato: solo puede usar letras y espacios. Ingrese un nombre y apellido como minimo</p>
+            </div>
+            
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="idDuiSpan">
+                    <img src="../bootstrap/icons/card-heading.svg">
+                    DUI</span>
+                <input type="text" id= "idDuiTxt" 
+                class="form-control" 
+                placeholder="########-#" 
+                aria-label="dui" 
+                aria-describedby="idDuiSpan">
+                <p class="invalid-feedback"   id="d-1">formato: ########-#, solo numeros y agregue el guion</p>
+            </div>
+            
+
+            <div class="input-group mb-3" >
+                <span class="input-group-text" id="idNitSpan">
+                    <img src="../bootstrap/icons/card-heading.svg">
+                    NIT</span>
+                <input type="text" id= "idNitTxt" class="form-control" placeholder="####-######-###-#" aria-label="nit" aria-describedby="idNitSpan">
+                <p class="invalid-feedback"   id="n-1">formato: ####-######-###-#, solo numeros y agregue los guiones</p>
+            </div>
+            
+            
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="idFechaNacSpan">
+                    <img src="../bootstrap/icons/calendar-date.svg">
+                    Fecha de nacimiento</span>
+                <input type="date" id= "idFechaNacTxt" class="form-control"  aria-label="fechaDeNacimiento" aria-describedby="idFechaNacSpan">
+                <p class="invalid-feedback"   id="f-1">Fecha invalida</p>
+            </div>
+            
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="idCorreo">
+                    <img src="../bootstrap/icons/at.svg">
+                    Correo</span>
+                <input type="email" id= "idCorreoTxt" class="form-control" placeholder="estudiante@institucion.edu.sv" aria-label="Nombre" aria-describedby="idNombre">
+                <p class="invalid-feedback"   id="co-1">Correo invalido</p>
+            </div>
+            
+
+            <div>
+                <button id="btnGuardar" class="btn btn-success">
+                    <i class= "bi bi-person-plus-fill"></i>
+                    Guardar</button>
+                <button id="btnLimpiar" class="btn btn-danger">
+                    <i class="bi bi-trash"></i>
+                    Limpiar</button>
+            </div>
+        </form>
+    </div>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> <!--Para el formato de la fecha-->
+    <script src="Estudiante.js" defer></script>
+    
+</body>
+</html>

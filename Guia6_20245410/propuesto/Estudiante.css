@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body div{
+    background-color: rgb(219, 255, 255);
+    width: 90%;
+    margin: 10% auto;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+form{
+    width: 100%;
+}
+
+h1{
+    text-align: center;
+}
